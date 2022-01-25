@@ -1,27 +1,36 @@
 const { Schema, Types } = require('mongoose');
+const date = require('../utils/date')
 
-const assignmentSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    assignmentId: {
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
-    assignmentName: {
+    reactionBody: {
       type: String,
       required: true,
-      maxlength: 50,
-      minlength: 4,
-      default: 'Unnamed assignment',
+      maxlength: 200
     },
-    score: {
-      type: Number,
-      required: true,
-      default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
+    
+
+
+    // assignmentName: {
+    //   type: String,
+    //   required: true,
+    //   maxlength: 50,
+    //   minlength: 4,
+    //   default: 'Unnamed assignment',
+    // },
+    // score: {
+    //   type: Number,
+    //   required: true,
+    //   default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+    // },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    // },
   },
   {
     toJSON: {
