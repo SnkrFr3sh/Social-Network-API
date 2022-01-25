@@ -12,25 +12,15 @@ const reactionSchema = new Schema(
       required: true,
       maxlength: 200
     },
-    
-
-
-    // assignmentName: {
-    //   type: String,
-    //   required: true,
-    //   maxlength: 50,
-    //   minlength: 4,
-    //   default: 'Unnamed assignment',
-    // },
-    // score: {
-    //   type: Number,
-    //   required: true,
-    //   default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
-    // },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now,
-    // },
+    username:{
+      type:String,
+      require:true
+    },
+    createdAt:{
+      type: date,
+      defailt: Date.now,
+      get: timestamp => dateFormat(timestamp)
+    }
   },
   {
     toJSON: {
@@ -39,5 +29,8 @@ const reactionSchema = new Schema(
     id: false,
   }
 );
+
+
+
 
 module.exports = assignmentSchema;
