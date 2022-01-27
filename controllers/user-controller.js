@@ -1,4 +1,23 @@
-const { Student, Course } = require('../models');
+const res = require('express/lib/response');
+const { User, Thought} = require('../models/');
+
+const userController = {
+  getUsers(req,res) {
+    User.find()
+      .then((users) => res.json(users)
+      .catch((err) => res.status(500).json(err));
+},
+
+
+
+
+
+
+
+
+
+
+
 
 // TODO: Create an aggregate function to get the number of students overall
 const headCount = async () =>
