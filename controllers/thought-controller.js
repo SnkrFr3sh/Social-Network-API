@@ -14,8 +14,8 @@ module.exports = {
       res.status(500).json(err)
     });
   },
-  getSingleUser(req,res){
-    Thouught.findOne({_is:req.params.userId })
+  getSingleThought(req,res){
+    Thouught.findOne({_id:req.params.thoguhtId })
     .then((user) =>
     !user
       ? res.status(404).json ({message: 'No user with that ID'})
