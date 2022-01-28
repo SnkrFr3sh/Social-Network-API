@@ -5,7 +5,7 @@ const {
   createThought,
   updateThought,
   deleteThought,
-} = require('../../controllers/thoughtController.js');
+} = require('../../controllers/thought-controller.js');
 
 // /api/thoughts
 router.route('/').get(getThoughts).post(createThought);
