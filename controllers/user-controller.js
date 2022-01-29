@@ -27,7 +27,7 @@ module.exports = {
       })
   },
   createUser(req, res) {
-    User.Create(req.body)
+    User.create(req.body)
       .then((userData) => {
         res.json(userData);
       })
