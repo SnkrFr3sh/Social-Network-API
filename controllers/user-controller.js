@@ -1,9 +1,7 @@
-const { Application } = require('express');
-const res = require('express/lib/response');
-const { restart } = require('nodemon');
 const { User, Thought } = require('../models/');
 
-const userController = {
+
+module.exports = {
   getUsers(req, res) {
     User.find()
       .then((userData) => {
@@ -81,10 +79,35 @@ const userController = {
   addFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      {}
-
-    )
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true })
+      .then((userData) => {
+        if (!userData) {
+          return res.status(404).json({ message: ' Cannot find user' })
+        }
+        res.json(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err)
+      })
+  },
+  removeFriend(req,res){
+    User.findByIdAndUpdate({_id:req.params.userId},
+    {$pull: {friends: req.params.friendId}},
+    {new:true})
+    .then((userData) => {
+      if(!userData){
+        return res.status(404).json({message: 'cannot find user'})
+      }
+      res.json(userData);
+    })
+    .catch((err)=>{
+    console.log(err);
+    res.status(500).json(err)
+     })
   }
+
 
 }
 
