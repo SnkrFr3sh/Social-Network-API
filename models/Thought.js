@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const User = require('./User');
 const reactionSchema = require('./Reaction');
-const date = require ('../utils/date')
+const Date = require ('../utils/date')
 
 const thoughtSchema = new Schema(
   {
@@ -10,11 +10,11 @@ const thoughtSchema = new Schema(
       required: true,
       maxlength: 280
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: timestamp => dateformat(timestamp)
-    },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    //   get: timestamp => dateformat(timestamp)
+    // },
     username: [
       {
         type: Schema.Types.ObjectId,
@@ -39,6 +39,6 @@ thoughtSchema.virtual('reactionCount').get(function(){
 
 
 
-const Thought = model('Thought', courseSchema);
+const Thought = model('Thought', thoughtSchema);
 
-module.exports = Course;
+module.exports = Thought;
