@@ -31,7 +31,7 @@ I built this project in order to work within MongoDb.
 
 
 
-## Usagge
+## Usage
 
 Users are able to work on a backend of a social network. Understanding how fields correlate with one another.
 
