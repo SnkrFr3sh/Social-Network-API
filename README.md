@@ -31,7 +31,7 @@ I built this project in order to work within MongoDb.
 
 
 
-## Usage![Screen Shot 2022-01-30 at 12 15 21 AM](https://user-images.githubusercontent.com/87551856/151692120-0316c19a-219e-4fca-9ff7-04db914a042c.png)
+## Usagge
 
 Users are able to work on a backend of a social network. Understanding how fields correlate with one another.
 
