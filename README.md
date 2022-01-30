@@ -21,25 +21,13 @@ I built this project in order to work within MongoDb.
 
 ## Table of Contents
 
-[Installation](#installation)
-
 [Usage](#usage)
 
 [License](#license)
 
 [Credits](#credits)
 
-[Contribute](#contribute)
-
-[Testing](#testing)
-
 [Questions](#questions)
-
-
-
-
-## Installation
-
 
 
 
@@ -57,7 +45,7 @@ For more information on the Apache license, click on this link: https://opensour
 
 
 ## Credits
-Big thank you to  for helping with the project!
+Big thank you to Instructor Tom for helping with the project!
 
 A few tools used on this project were: MongoDB, Express, Npm
 
