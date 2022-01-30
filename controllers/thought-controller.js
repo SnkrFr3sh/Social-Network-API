@@ -1,4 +1,5 @@
 
+const { reactionSchema } = require('../models');
 const Thought = require('../models/Thought');
 const User = require('../models/User');
 
@@ -89,9 +90,30 @@ module.exports = {
       )
   },
   addReaction(req, res) {
+    // reactionSchema.create(req.body)
+    //   .then((reaction) => {
+    //     console.log('params',req.params.userId)
+    //     console.log('body',req.body.userId)
+    //     return User.findOneAndUpdate(
+    //       { _id: req.params.userId },
+    //       { $push: { reactions: reaction._id } },
+    //       { new: true }
+    //     );
+    //   })
+    //   .then((dbThoughtData) => {
+    //     !dbThoughtData
+    //       ? res.status(404).json({ message: "reaction was created, but no thought with that id" })
+    //       : res.json('New reaction created!')
+    //   })
+    //   .catch((err) => {
+    //     console.log
+    //     res.status(500).json(err)
+    //   });
+
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { friends: req.params.reactionId } },
+      // { $push: { friends: req.params.reactionId } },
+      { $push: { reactions: req.params.reactionId } },
       { new: true })
       .then((userData) => {
         if (!userData) {
