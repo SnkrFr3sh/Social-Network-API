@@ -7,8 +7,9 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find()
       // ADD SORT HERE
-      .then((thoughtData) => {
-        res.json(thoughtData)
+
+      .then((dbThoughtData) => {
+        res.json(dbThoughtData)
       })
       .catch((err) => {
         console.log(err)
@@ -17,13 +18,18 @@ module.exports = {
   },
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
-      .then((thoughtData) => {
-        if (!thoughtData) {
-          return res.status(404).json({ message: 'No user with that ID' })
-        }
-
-      }
+      .then((dbThoughtData) =>
+        !dbThoughtData
+          ? res.status(404).json({ message: "cannot find thought" })
+          : res.json(dbThoughtData)
       )
+      // .then((dbThoughtData) => {
+      //   if (!dbThoughtData) {
+      //     return res.status(404).json({ message: 'No user with that ID' })
+      //   }
+
+      // }
+      // )
       .catch((err) => {
         console.log(err);
         res.status(500).json(err)
@@ -31,15 +37,17 @@ module.exports = {
   },
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thoughtData) => {
-        return User.findoneAndUpdate(
-          { _id: req.body.userID },
-          { $push: { thoughts: thoughtData._id } },
+      .then((dbThoughtData) => {
+        console.log('params',req.params.userId)
+        console.log('body',req.body.userId)
+        return User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $push: { thoughts: dbThoughtData._id } },
           { new: true }
         );
       })
-      .then((thoughtData) => {
-        !thoughtData
+      .then((dbThoughtData) => {
+        !dbThoughtData
           ? res.status(404).json({ message: "thought was created, but no user with that id" })
           : res.json('Create new thought!')
       })
@@ -57,10 +65,10 @@ module.exports = {
         new: true,
       }
     )
-      .then((thoughtData) => {
-        if (!thoughtData) {
+      .then((dbThoughtData) => {
+        if (!dbThoughtData) {
           return res.status(404).json({ message: 'cannot find thought' });
-        } res.json(thoughtData);
+        } res.json(dbThoughtData);
       })
       .catch((err) => {
         console.log(err);
@@ -69,8 +77,8 @@ module.exports = {
   },
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
-      .then((thoughtData) => {
-        if (!thoughtData) {
+      .then((dbThoughtData) => {
+        if (!dbThoughtData) {
           return res.status(404).josn({ message: 'cannot find thought' });
         }
       })
@@ -79,6 +87,38 @@ module.exports = {
         res.status(500).json(err)
       }
       )
+  },
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { friends: req.params.reactionId } },
+      { new: true })
+      .then((userData) => {
+        if (!userData) {
+          return res.status(404).json({ message: ' Cannot find thought' })
+        }
+        res.json(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err)
+      })
+  },
+  removeReaction(req, res) {
+    Thought.findByIdAndUpdate({ _id: req.params.thoughtId },
+      { $pull: { friends: req.params.reactionId } },
+      { new: true })
+      .then((userData) => {
+        if (!userData) {
+          return res.status(404).json({ message: 'cannot find thought' })
+        }
+        res.json(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err)
+      })
   }
+
 }
 

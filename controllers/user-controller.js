@@ -4,8 +4,11 @@ const { User, Thought } = require('../models/');
 module.exports = {
   getUsers(req, res) {
     User.find()
-      .then((userData) => {
-        res.json(userData)
+    .select('-__v')
+    .populate('friends')
+    .populate('thoughts')
+      .then((dbUserData) => {
+        res.json(dbUserData)
       })
       .catch((err) => {
         console.log(err);
@@ -14,12 +17,13 @@ module.exports = {
   },
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
+      .select('-__v')
       .populate('friends')
-      .populate('thought')
-      .then((userData) =>
-        !userData
-          ? res.status(404).json({ message: "no user with that id" })
-          : res.json(userData)
+      .populate('thoughts')
+      .then((dbUserData) =>
+        !dbUserData
+          ? res.status(404).json({ message: "cannot find user" })
+          : res.json(dbUserData)
       )
       .catch((err) => {
         console.log(err);
@@ -28,8 +32,8 @@ module.exports = {
   },
   createUser(req, res) {
     User.create(req.body)
-      .then((userData) => {
-        res.json(userData);
+      .then((dbUserData) => {
+        res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
@@ -48,10 +52,10 @@ module.exports = {
         new: true,
       }
     )
-      .then((userData) => {
-        if (!userData) {
+      .then((dbUserData) => {
+        if (!dbUserData) {
           return res.status(404).json({ message: "cannot find user" });
-        } res.json(userData);
+        } res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
@@ -61,14 +65,14 @@ module.exports = {
   },
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
-      .then((userData) => {
-        if (!userData) {
+      .then((dbUserData) => {
+        if (!dbUserData) {
           return res.status(404).json({ message: 'Cannot find User' })
         }
-        return Thought.deleteMany({ _id: { $in: userData.thoughts } })
+        return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } })
       })
       .then(() => {
-        res.json({ message: 'User and thier thoughts deleted' })
+        res.json({ message: 'User and their thoughts deleted' })
       })
       .catch((err) => {
         console.log(err)
@@ -81,11 +85,11 @@ module.exports = {
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
       { new: true })
-      .then((userData) => {
-        if (!userData) {
+      .then((dbUserData) => {
+        if (!dbUserData) {
           return res.status(404).json({ message: ' Cannot find user' })
         }
-        res.json(userData);
+        res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
@@ -96,11 +100,11 @@ module.exports = {
     User.findByIdAndUpdate({_id:req.params.userId},
     {$pull: {friends: req.params.friendId}},
     {new:true})
-    .then((userData) => {
-      if(!userData){
+    .then((dbUserData) => {
+      if(!dbUserData){
         return res.status(404).json({message: 'cannot find user'})
       }
-      res.json(userData);
+      res.json(dbUserData);
     })
     .catch((err)=>{
     console.log(err);

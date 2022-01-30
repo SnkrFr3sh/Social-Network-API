@@ -16,11 +16,11 @@ const reactionSchema = new Schema(
       type:String,
       require:true
     },
-    // createdAt:{
-    //   type: date,
-    //   defailt: Date.now,
-    //   get: timestamp => dateFormat(timestamp)
-    // }
+    createdAt:{
+      type: Date,
+      defailt: Date.now,
+      // get: timestamp => dateFormat(timestamp)
+    }
   },
   {
     toJSON: {

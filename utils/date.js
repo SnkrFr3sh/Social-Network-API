@@ -1,118 +1,69 @@
-const names = [
-  'Aaran',
-  'Aaren',
-  'Aarez',
-  'Aarman',
-  'Aaron',
-  'Aaron-James',
-  'Aarron',
-  'Aaryan',
-  'Aaryn',
-  'Aayan',
-  'Aazaan',
-  'Abaan',
-  'Abbas',
-  'Abdallah',
-  'Abdalroof',
-  'Abdihakim',
-  'Abdirahman',
-  'Abdisalam',
-  'Abdul',
-  'Abdul-Aziz',
-  'Abdulbasir',
-  'Abdulkadir',
-  'Abdulkarem',
-  'Smith',
-  'Jones',
-  'Coollastname',
-  'enter_name_here',
-  'Ze',
-  'Zechariah',
-  'Zeek',
-  'Zeeshan',
-  'Zeid',
-  'Zein',
-  'Zen',
-  'Zendel',
-  'Zenith',
-  'Zennon',
-  'Zeph',
-  'Zerah',
-  'Zhen',
-  'Zhi',
-  'Zhong',
-  'Zhuo',
-  'Zi',
-  'Zidane',
-  'Zijie',
-  'Zinedine',
-  'Zion',
-  'Zishan',
-  'Ziya',
-  'Ziyaan',
-  'Zohaib',
-  'Zohair',
-  'Zoubaeir',
-  'Zubair',
-  'Zubayr',
-  'Zuriel',
-  'Xander',
-  'Jared',
-  'Courtney',
-  'Gillian',
-  'Clark',
-  'Jared',
-  'Grace',
-  'Kelsey',
-  'Tamar',
-  'Alex',
-  'Mark',
-  'Tamar',
-  'Farish',
-  'Sarah',
-  'Nathaniel',
-  'Parker',
-];
+const addDateSuffix = date => {
 
-const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
-];
+let dateStr=date.toString();
 
-// Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const lastChar = dateStr.charAt(dateStr.length - 1);
 
-// Gets a random full name
-const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
+if (lastChar === '1' && dateStr !== - 11){
+  dateStr=`${dateStr}st`;
+} else if (lastChar === '2' && dateStr !== '12') {
+  dateStr=`${dateStr}nd`;
+} else if (lastChar === '3' && dateStr !== '13') {
+  dateStr=`${dateStr}th`;
+}
 
-// Function to generate random assignments that we can add to student object.
-const getRandomAssignments = (int) => {
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      assignmentName: getRandomArrItem(appDescriptions),
-      score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
-    });
-  }
-  return results;
-};
+return dateStr
 
-// Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomAssignments };
+
+// module.exports = (
+//   timestamp,
+//   {monthLength = 'short', dateSuffix = true} = {}) => {
+//     letmonths;
+//     if (monthLength === 'short') {
+//       months = {
+//         0: 'Jan',
+//         1: 'Feb',
+//         2: 'Mar',
+//         3: 'Apr',
+//         4: 'May',
+//         5: 'Jun',
+//         6: 'Jul',
+//         7: 'Aug',
+//         8: 'Sep',
+//         9: 'Oct',
+//         10: 'Nov',
+//         11: 'Dec',
+
+//       };
+//     } else {
+//       months = {
+//         0: 'January',
+//         1: 'February',
+//         2: 'March',
+//         3: 'April',
+//         4: 'May',
+//         5: 'June',
+//         6: 'July',
+//         7: 'August',
+//         8: 'September',
+//         9: 'October',
+//         10: 'November',
+//         11: 'December',
+//       };
+//     }
+//     const dateObj = new Date(timestamp);
+//     const formattedMonth = months[dateObj.getMonth()];
+
+//     let dayOfMonth;
+//     if(dateSuffix) {
+//       dayOfMonth = addDateSuffix(dateObj.getDate());
+//     } else {
+//       dayOfMonth = dateObj.getDate();
+//     }
+
+//     const year = dateObj.getFullYear();
+
+//   }
+
+
+}
