@@ -23,6 +23,8 @@ I built this project in order to work within MongoDb.
 
 [Usage](#usage)
 
+[Installation](#installation)
+
 [License](#license)
 
 [Credits](#credits)
@@ -35,7 +37,20 @@ I built this project in order to work within MongoDb.
 
 Users are able to work on a backend of a social network. Understanding how fields correlate with one another.
 
+Here is a walkthrough video that shows users how to use the API.
 
+[![Watch the video](https://user-images.githubusercontent.com/87551856/152732931-6105a187-e3f3-4b0c-ada6-4d3476db19a1.png)](https://drive.google.com/file/d/1xkuQlWj3insq3LR98kuVY0UkBnQcNftt/view)
+
+https://drive.google.com/file/d/1xkuQlWj3insq3LR98kuVY0UkBnQcNftt/view
+
+## Installation
+
+1. Download or clone repository to local computer.
+2. Open MongoDB and connect to server(make sure you have mongoDB Compass installed)
+3. Open repo in VSCODE.
+4. Open index.js in terminal and run 'npm install'
+5. In the same terminal run 'Node index.js'
+6. To test connections and routes open Insomniac and test with http://localhost:3001
 
 ## License
 This application is utilizing the Apache license.
