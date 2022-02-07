@@ -24,20 +24,14 @@ module.exports = {
           ? res.status(404).json({ message: "cannot find thought" })
           : res.json(dbThoughtData)
       )
-      // .then((dbThoughtData) => {
-      //   if (!dbThoughtData) {
-      //     return res.status(404).json({ message: 'No user with that ID' })
-      //   }
-
-      // }
-      // )
       .catch((err) => {
         console.log(err);
         res.status(500).json(err)
       });
   },
   createThought(req, res) {
-    Thought.create(req.body)
+    Thought
+      .create(req.body)
       .then((dbThoughtData) => {
         console.log('params',req.params.userId)
         console.log('body',req.body.userId)
@@ -48,12 +42,9 @@ module.exports = {
         );
       })
       .then((dbThoughtData) => {
-        !dbThoughtData
-          ? res.status(404).json({ message: "thought was created, but no user with that id" })
-          : res.json('Create new thought!')
+        res.status(200).json(dbThoughtDb)
       })
       .catch((err) => {
-        console.log
         res.status(500).json(err)
       });
   },

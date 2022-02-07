@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 const User = require('./User');
 const reactionSchema = require('./Reaction');
-// const Date = require('../utils/date')
 
 const thoughtSchema = new Schema(
   {
@@ -20,7 +19,6 @@ const thoughtSchema = new Schema(
     {
       type: String,
       ref: User,
-      // type: String,
       require: true
     },
     reactions: [reactionSchema],
