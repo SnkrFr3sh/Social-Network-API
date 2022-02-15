@@ -39,9 +39,12 @@ Users are able to work on a backend of a social network. Understanding how field
 
 Here is a walkthrough video that shows users how to use the API.
 
-[![Watch the video](https://user-images.githubusercontent.com/87551856/152732931-6105a187-e3f3-4b0c-ada6-4d3476db19a1.png)](https://drive.google.com/file/d/1xkuQlWj3insq3LR98kuVY0UkBnQcNftt/view)
+User funcitionality Walkthrough:
+[![Watch the video](https://youtu.be/Qyo3ui7k7Kg)
 
-https://drive.google.com/file/d/1xkuQlWj3insq3LR98kuVY0UkBnQcNftt/view
+Thouhght funcitonality Walkthrough:
+[![Watch the video](https://youtu.be/k6MEYpXWjYs)
+
 
 ## Installation
 
@@ -54,6 +57,7 @@ https://drive.google.com/file/d/1xkuQlWj3insq3LR98kuVY0UkBnQcNftt/view
 
 ## License
 This application is utilizing the Apache license.
+
 
 For more information on the Apache license, click on this link: https://opensource.org/licenses/Apache-2.0.
 
