@@ -40,10 +40,10 @@ Users are able to work on a backend of a social network. Understanding how field
 Here is a walkthrough video that shows users how to use the API.
 
 User funcitionality Walkthrough:
-[![Watch the video](https://youtu.be/Qyo3ui7k7Kg)
+[![Watch the video(https://user-images.githubusercontent.com/87551856/154126302-fcfbc1b9-ebd1-4db2-9e50-ebc13e1ebe0b.png)](https://youtu.be/Qyo3ui7k7Kg)
 
 Thouhght funcitonality Walkthrough:
-[![Watch the video](https://youtu.be/k6MEYpXWjYs)
+[![Watch the video(https://user-images.githubusercontent.com/87551856/154126401-8c30e5ef-57a3-4dcd-a9c1-a6019067f87a.png)](https://youtu.be/k6MEYpXWjYs)
 
 
 ## Installation
